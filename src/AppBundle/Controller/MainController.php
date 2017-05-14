@@ -22,7 +22,7 @@ class MainController extends Controller
      //   @Route::class;
         $templating = $this->container->get('templating');
         $html = $templating->render('base.html.twig');
-        return new Response('Home Page');
+        return new Response($html);
 
     }
 }
