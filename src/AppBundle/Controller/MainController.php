@@ -28,7 +28,7 @@ class MainController extends Controller
 
 
     /**
-     * @Route("/char-page.php?name={name}&server={server}&region={region}" , name="char_page")
+     * @Route("/char-page.php?" , name="char_page")
      * @Method("GET")
      */
     public function getCharPage($name, $server, $region){
