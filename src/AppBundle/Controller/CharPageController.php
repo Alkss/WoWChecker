@@ -15,13 +15,16 @@ class MainController extends Controller
 {
 
     /**
-    *@Route("/")
+    *@Route("/char-page.php?name={$name}&server={$server}&region={$region}")
      */
 
-    public function showAction(){
-     //   @Route::class;
-        $templating = $this->container->get('templating');
-       return $this->render('novo-formulario.php');
+    public function showAction($name, $server, $region){
+
+       return $this->render('char-page.php',[
+           'name' => $name,
+           'server' => $server,
+           '$region' => $region,
+       ]);
 
     }
 }
