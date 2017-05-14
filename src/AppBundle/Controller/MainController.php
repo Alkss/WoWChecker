@@ -17,12 +17,14 @@ class MainController extends Controller
 {
 
     /**
-    *@Route("/")
+    *@Route("/{name}")
      */
 
-    public function showAction(){
+    public function showAction($name){
 
-       return $this->render('home-page.php');
+       return $this->render('home-page.php', array(
+           'name' => $name,
+       ));
 
     }
     /**
