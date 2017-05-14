@@ -22,16 +22,10 @@ class MainController extends Controller
     *@Route("/")
      */
 
-//    public function showAction(){
-//
-//       return $this->render('home-page.php');
-//
-//    }
+    public function showAction(){
 
-    public function showCharPage(){
-        $collection = new RouteCollection();
-        $collection->add('welcome', new Router('/', array('_controler' => 'AppBundle:Welcome:index',)));
-        return $collection;
+       return $this->render('home-page.php');
+
     }
 
     }
