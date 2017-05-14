@@ -17,7 +17,7 @@ class MainController extends Controller
 {
 
     /**
-    *@Route("/{name}")
+    *@Route("/")
      */
 
     public function showAction($name){
@@ -28,23 +28,25 @@ class MainController extends Controller
 
     }
     /**
-     *@Route("/char-page")
+     *@Route("/char-page/{name}")
      * @Template()
      */
 
-    public function showCharPage(){
+    public function showCharPage($name){
 
-        return $this->render('char-page.php');
+        return $this->render('char-page.php', array(
+            'name' => $name,
+        ));
 
     }
 
     /**
-     * @Route("char-page.html.php?name={name}&server={server}&region={region}" , name="char_page")
+     * @Route("char-page.php?name={name}&server={server}&region={region}" , name="char_page")
      * @Template()
      */
     public function getCharPage($name, $server, $region){
 
-            return $this->render('char-page.html.php', array(
+            return $this->render('char-page.php', array(
                 'name' => $name,
                 'server' => $server,
                 '$region' => $region,

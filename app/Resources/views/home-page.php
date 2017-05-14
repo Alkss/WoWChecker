@@ -14,7 +14,7 @@ $control = new \AppBundle\Controller\MainController();
 		<input type="submit" value="Buscar">
     </form>
    	<hr>
-    <form action="guild-page.php">
+    <form action="guildPage/guild-page.php">
     <h4> Buscar por Guild </h4>
         Nome: <input type="text" name="name" /><br/>
         Server: <input type="text" name="server" /><br/>
