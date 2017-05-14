@@ -8,7 +8,8 @@
         Server: <input type="text" name="server" /><br/>
         Região: <input type="text" name="region" /></br>
 		<input type="submit" value="Buscar">        
-   	</form>
+   	    <a href="char-page.php" type="input">Buscar por char</a>
+    </form>
    	<hr>
     <form action="guild-page.php">
     <h4> Buscar por Guild </h4>

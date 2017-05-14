@@ -7,6 +7,7 @@
  */
 
 namespace AppBundle\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,6 +23,21 @@ class MainController extends Controller
      //   @Route::class;
         $templating = $this->container->get('templating');
        return $this->render('home-page.php');
+
+    }
+
+
+    /**
+     * @Route("/char-page.php?name={name}&server={server}&region={region}" , name="char_page")
+     * @Method("GET")
+     */
+    public function getCharPage($name, $server, $region){
+
+            return $this->render('char-page.php',[
+                'name' => $name,
+                'server' => $server,
+                '$region' => $region,
+            ]);
 
     }
 }
