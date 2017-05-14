@@ -20,11 +20,9 @@ class MainController extends Controller
     *@Route("/")
      */
 
-    public function showAction($name){
+    public function showAction(){
 
-       return $this->render('home-page.php', array(
-           'name' => $name,
-       ));
+       return $this->render('home-page.php');
 
     }
     /**
