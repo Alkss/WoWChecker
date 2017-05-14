@@ -14,7 +14,7 @@ class MainController
 {
 
     /**
-    *@Route("/index")
+    *@Route("/")
      */
 
     public function showAction(){
