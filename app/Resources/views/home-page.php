@@ -6,7 +6,7 @@ $control = new \AppBundle\Controller\MainController();
 <header>
 </header>
 <h1>WoWChecker</h1>
-    <form action="<?php $control->getCharPage() ?>">
+    <form action="charPage/char-page.php">
     <h4> Buscar por Personagem </h4>
         Nome: <input type="text" name="name" /><br/>
         Server: <input type="text" name="server" /><br/>
