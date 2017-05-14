@@ -10,8 +10,10 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Command\RouterDebugCommand;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\RouteCollection;
 
 class MainController extends Controller
 {
@@ -20,35 +22,16 @@ class MainController extends Controller
     *@Route("/")
      */
 
-    public function showAction(){
+//    public function showAction(){
+//
+//       return $this->render('home-page.php');
+//
+//    }
 
-       return $this->render('home-page.php');
-
-    }
-    /**
-     *@Route("/char-page/{name}")
-     * @Template()
-     */
-
-    public function showCharPage($name){
-
-        return $this->render('char-page.php', array(
-            'name' => $name,
-        ));
-
+    public function showCharPage(){
+        $collection = new RouteCollection();
+        $collection->add('welcome', new Router('/', array('_controler' => 'AppBundle:Welcome:index',)));
+        return $collection;
     }
 
-    /**
-     * @Route("char-page.php?name={name}&server={server}&region={region}" , name="char_page")
-     * @Template()
-     */
-    public function getCharPage($name, $server, $region){
-
-            return $this->render('char-page.php', array(
-                'name' => $name,
-                'server' => $server,
-                '$region' => $region,
-            ));
-
     }
-}
