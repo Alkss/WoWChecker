@@ -21,7 +21,7 @@ class MainController extends Controller
     public function showAction(){
      //   @Route::class;
         $templating = $this->container->get('templating');
-       return $this->render('home-page.php');
+       return $this->render('novo-formulario.php');
 
     }
 }

@@ -1,5 +1,5 @@
 <html>
-    <form action="adiciona-produto.php">
+    <form action="1.0/adiciona-produto.php">
         Nome: <input type="text" name="nome" /><br/>
         Preço: <input type="number" name="preco" /><br/>
 
