@@ -16,7 +16,7 @@ class MainController extends Controller
 {
 
     /**
-    *@Route("/test")
+    *@Route("/")
      */
 
     public function showAction(){
@@ -25,7 +25,7 @@ class MainController extends Controller
 
     }
     /**
-     *@Route("/char-page.php")
+     *@Route("/char-page")
      */
 
     public function showCharPage(){
