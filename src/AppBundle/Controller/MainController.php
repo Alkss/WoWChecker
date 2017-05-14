@@ -16,7 +16,7 @@ class MainController extends Controller
 {
 
     /**
-    *@Route("/")
+    *@Route("/test")
      */
 
     public function showAction(){
