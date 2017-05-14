@@ -21,7 +21,7 @@ class MainController extends Controller
     public function showAction(){
      //   @Route::class;
         $templating = $this->container->get('templating');
-        $html = $templating->render('base.html.twig');
+        $html = $templating->render('home.html');
         return new Response($html);
 
     }
