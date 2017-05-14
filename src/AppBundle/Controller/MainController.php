@@ -20,20 +20,27 @@ class MainController extends Controller
      */
 
     public function showAction(){
-     //   @Route::class;
-        $templating = $this->container->get('templating');
+
        return $this->render('home-page.php');
 
     }
+    /**
+     *@Route("/char-page.php")
+     */
 
+    public function showCharPage(){
+
+        return $this->render('char-page.php');
+
+    }
 
     /**
-     * @Route("/char-page.php?" , name="char_page")
-     * @Method("GET")
+     * @Route("char-page.html.php?name={name}&server={server}&region={region}" , name="char_page")
+     *
      */
     public function getCharPage($name, $server, $region){
 
-            return $this->render('char-page.php', array(
+            return $this->render('char-page.html.php', array(
                 'name' => $name,
                 'server' => $server,
                 '$region' => $region,

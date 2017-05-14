@@ -1,10 +1,3 @@
-<?php
-$name = $_GET["name"];
-$server = $_GET["server"];
-$region = $_GET["region"];
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
