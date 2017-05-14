@@ -33,11 +33,11 @@ class MainController extends Controller
      */
     public function getCharPage($name, $server, $region){
 
-            return $this->render('char-page.php',[
+            return $this->render('char-page.php', array(
                 'name' => $name,
                 'server' => $server,
                 '$region' => $region,
-            ]);
+            ));
 
     }
 }
