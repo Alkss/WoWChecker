@@ -53,7 +53,7 @@ $region = $_GET["region"];
             </div>
             <div class="col-xs-6">
 
-            cvbbfgbcgcv
+            Mais informações
 
             </div>
 
