@@ -2,10 +2,12 @@
 require_once 'ConnectionDB.php';
 $db = new ConnectionDB();
 
+//Recebendo os valores das variaveis passadas pelo url...
 $name = $_GET["name"];
 $server = $_GET["server"];
-$db->insertInfo($name);
+$db->insertChar($name, $server);
 
+//Recebendo e decoficando a url com json
 $json = file_get_contents('https://us.api.battle.net/wow/character/'. $server .'/' . $name . '?locale=en_US&apikey=ndy6c9t2r9qt4mnw248sj9pj83mztrep');
 $obj = json_decode($json);
 

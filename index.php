@@ -17,36 +17,37 @@ $db->conncetDB();
 
 <h1 align="center">WoWChecker</h1>
 <div class="container-fluid">
-    <div class="col-xs-4"
-    <form action="char-page.php">
-        <h4> Buscar por Personagem </h4>
+    <div class="col-xs-4">
+        <form action="char-page.php">
+            <h4> Buscar por Personagem </h4>
+            Nome: <input type="text" name="name"/><br/>
+            Server: <input type="text" name="server"/><br/>
+            <input type="submit" value="Buscar">
+        </form>
+    </div>
+    <div class="col-xs-4">
+        <form action="guild-page.php">
+            <h4> Buscar por Guild </h4>
+            Nome: <input type="text" name="name"/><br/>
+            Server: <input type="text" name="server"/><br/>
+            <input type="submit" value="Buscar">
+        </form>
+    </div>
 
-        Nome: <input type="text" name="name"/><br/>
-        Server: <input type="text" name="server"/><br/>
-        <input type="submit" value="Buscar">
+    <div class="col-xs-4">
+        <div class="panel panel default">
+            <div class="panel-heading">Buscas recentes</div>
+            <div class="panel-body">
 
-    </form>
-</div>
-<div class="col-xs-4">
-    <form action="guild-page.php">
-        <h4> Buscar por Guild </h4>
-        Nome: <input type="text" name="name"/><br/>
-        Server: <input type="text" name="server"/><br/>
-        <input type="submit" value="Buscar">
-    </form>
-</div>
-
-<div class="col-xs-4">
-    <div class="panel panel default">
-        <div class="panel-heading">Buscas recentes</div>
-        <div class="panel-body">
-
+            </div>
         </div>
     </div>
-</div>
+
+<!--TODO: Colocar os recentes no meio do char e da guild -->
 
 
-</>
+</
+>
 
 </html>
 
