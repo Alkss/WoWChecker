@@ -1,3 +1,10 @@
+<?php
+require_once ('ConnectionDB.php');
+$db = new ConnectionDB();
+
+
+?>
+
 <html>
 <header>
     <meta charset="utf-8">
@@ -16,17 +23,17 @@
     <div class="col-xs-4">
         <form action="char-page.php">
             <h4> Buscar por Personagem </h4>
-            Nome: <input type="text" name="name"/><br/>
-            Server: <input type="text" name="server"/><br/>
+            Nome: <br/><input type="text" name="name"/><br/>
+            Server: <br/><input type="text" name="server"/><br/>
             <input type="submit" value="Buscar">
         </form>
     </div>
 
     <!-- box de buscar recentes -->
     <div class="col-xs-4">
-        <div class="panel panel default" style="border: thin" align="center">
-            <div class="panel-heading">Buscas recentes</div>
-            <div class="panel-body">Recentes...</div>
+        <div class="panel panel default">
+            <div class="panel-heading"><h4>Buscas recentes</h4></div>
+            <div class="panel-body"><?php $db->returnInfo() ?></div>
 
 
         </div>
@@ -36,8 +43,8 @@
     <div class="col-xs-4">
         <form action="guild-page.php" style="align-self: center">
             <h4> Buscar por Guild </h4>
-            Nome: <input type="text" name="name"/><br/>
-            Server: <input type="text" name="server"/><br/>
+            Nome: </br><input type="text" name="name"/><br/>
+            Server: </br><input type="text" name="server"/><br/>
             <input type="submit" value="Buscar">
         </form>
     </div>
