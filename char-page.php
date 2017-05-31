@@ -1,19 +1,20 @@
 <?php
-require_once 'ConnectionDB.php';
-$db = new ConnectionDB();
+require_once ('Model/Char.php');
+require_once ('Control/CharController.php');
 
-//Recebendo os valores das variaveis passadas pelo url...
-$name = $_GET["name"];
-$server = $_GET["server"];
-$db->insertChar($name, $server);
+$name = $_GET['name'];
+$server = $_GET['server'];
 
-//Recebendo e decoficando a url com json
-$json = file_get_contents('https://us.api.battle.net/wow/character/'. $server .'/' . $name . '?locale=en_US&apikey=ndy6c9t2r9qt4mnw248sj9pj83mztrep');
-$obj = json_decode($json);
+if ($name!=null && $server!=null) {
+    $charController = new CharController($name, $server);
+    $json = $charController->decodeJsonNameAndServer($name, $server);
+}
 
-?>
+if (isset($json->name)){
 
-
+    echo
+    '
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,12 +35,12 @@ $obj = json_decode($json);
         <tbody>
         <tr>
             <td>
-                <h2><?= $name; ?></h2>
+                <h2>'.$json->name.'('.$json->level.')</h2>
             </td>
         </tr>
         <tr>
             <td>
-                <?= $server; ?>
+                <?= var_dump($json)?>
             </td>
         </tr>
         </tbody>
@@ -51,7 +52,7 @@ $obj = json_decode($json);
         <div class="col-xs-6">
             <div class="panel panel-default">
                 <div class="panel-heading" align="center">Informações Sobre Raid</div>
-                <div class="panel-body">Conteúdo...</div>
+                <div class="panel-body">Conteúdos...</div>
                 <hr>
             </div>
         </div>
@@ -67,3 +68,14 @@ $obj = json_decode($json);
 </div>
 </body>
 </html>
+
+    
+    ';
+}
+else {
+    echo 'Erro 404: Personagem não encontrado. Por favor verifique se todos os campos foram preenchidos corretamente.';
+
+}
+
+?>
+

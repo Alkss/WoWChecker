@@ -39,24 +39,38 @@ class ConnectionDB
     {
         try {
 
-            $json = file_get_contents('https://us.api.battle.net/wow/character/' . $server . '/' . $name . '?locale=en_US&apikey=ndy6c9t2r9qt4mnw248sj9pj83mztrep');
-            $arr = json_decode($json);
-
             $dbh = $this->conncetDB(); //conectar no db
-            $statement = $dbh->prepare("INSERT INTO `char`(name, level, nme_class) VALUES(:name, :level, :nme_class)");
+            $selectStatement = $dbh->prepare("SELECT name FROM `char` ORDER BY idt DESC LIMIT 1 ");
+            $selectStatement->execute();
+            $selectedName = $selectStatement->fetchAll();
+            var_dump($selectedName);
+            foreach ($selectedName as $names){
 
-            //transformar as informações em array para realizar a inclusão utilizando a função execute
-            // *******PREVINE SQL INJECTION********//
-            $statement->execute(array(
-                ':name' => $arr->name,
-                ':level' => $arr->level,
-                ':nme_class' => $arr->class
-            ));
-            echo $statement->rowCount();
-        } catch (PDOException $e) {
-            echo 'Error: ' . $e->getMessage();
+                if ($name == $names['name']) {
+                    //do nothing...
+                } else {
 
-        }
+                    $json = file_get_contents('https://us.api.battle.net/wow/character/' . $server . '/' . $name . '?locale=en_US&apikey=ndy6c9t2r9qt4mnw248sj9pj83mztrep');
+                    $arr = json_decode($json);
+
+                    $statement = $dbh->prepare("INSERT INTO `char`(name, level, nme_class) VALUES(:name, :level, :nme_class)");
+
+                    //transformar as informações em array para realizar a inclusão utilizando a função execute
+                    // *******PREVINE SQL INJECTION********//
+                    $statement->execute(array(
+                        ':name' => $arr->name,
+                        ':level' => $arr->level,
+                        ':nme_class' => $arr->class
+                    ));
+                    //echo $statement->rowCount();
+                }
+            }
+
+        }catch
+            (PDOException $e) {
+                echo 'Error: ' . $e->getMessage();
+
+            }
 
     }
 
@@ -66,13 +80,13 @@ class ConnectionDB
 
         try {
             $dbh = $this->conncetDB();
-            $statement = $dbh->prepare("SELECT * FROM `char`");
+            $statement = $dbh->prepare("SELECT * FROM `char` ORDER BY idt DESC LIMIT 7");
             $statement->execute();
             $chars = $statement->fetchAll();
-            $chars = array_splice($chars, 1);
-            foreach($chars as $char){
-                echo $char['name']." - Nível: ".$char['level']." - ".$char['nme_class'].'<hr>';
+            foreach ($chars as $char) {
+                echo $char['name'] . " - Nível: " . $char['level'] . " - " . $char['nme_class'] . '<hr>';
             }
+
 
         } catch (PDOException $e) {
             echo 'Error: ' . $e->getMessage();
