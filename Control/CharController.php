@@ -53,6 +53,43 @@ class CharController
         return $obj = json_decode($json);
     }
 
+    public function decodeJsonStats($name, $server){
+        $json = file_get_contents('https://us.api.battle.net/wow/character/'.$server.'/'.$name.'?fields=stats&locale=en_US&apikey=ndy6c9t2r9qt4mnw248sj9pj83mztrep');
+        $obj = json_decode($json);
+        return $obj->stats;
+    }
+
+    public function decodeJsonRaidGuild($name, $server){
+        $json = file_get_contents('https://www.warcraftlogs.com:443/v1/rankings/character/'.$name.'/'.$server.'/us?api_key=bd79d67e43a4f5dfa226ee2193e6fa3f');
+        $obj = json_decode($json);
+        $output = "";
+        for ($i = 0; $i<count($obj); $i++){
+            if ($obj[$i]->guild != null) {
+                $output .= $obj[$i]->guild . "</br>";
+            }
+            else{
+                $output .= "Sem guild"."<br>";
+            }
+        }
+        return $output;
+    }
+
+
+    //transformar numa função para retornar os bosses da raid de interesse.
+    public function decodeJsonRaid($name, $server){
+        $json = file_get_contents('https://us.api.battle.net/wow/character/'.$server.'/'.$name.'?fields=progression&locale=en_US&apikey=ndy6c9t2r9qt4mnw248sj9pj83mztrep');
+        $obj = json_decode($json);
+        $arr = array();
+        $boss_list = $obj->progression->raids[37]->bosses;
+
+        foreach ($boss_list as $boss) {
+            echo $boss->name;
+        }
+
+        return $obj;
+
+    }
+
 
 
 }

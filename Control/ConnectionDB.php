@@ -37,14 +37,14 @@ class ConnectionDB
     //Realiza a inserção dos valores 'name', 'level' e 'class' na tabela char no db.
     public function insertChar($name, $server)
     {
+
         try {
 
             $dbh = $this->conncetDB(); //conectar no db
             $selectStatement = $dbh->prepare("SELECT name FROM `char` ORDER BY idt DESC LIMIT 1 ");
             $selectStatement->execute();
             $selectedName = $selectStatement->fetchAll();
-            var_dump($selectedName);
-            foreach ($selectedName as $names){
+            foreach ($selectedName as $names) {
 
                 if ($name == $names['name']) {
                     //do nothing...
@@ -60,17 +60,18 @@ class ConnectionDB
                     $statement->execute(array(
                         ':name' => $arr->name,
                         ':level' => $arr->level,
-                        ':nme_class' => $arr->class
+                        ':nme_class' => $this->className($arr)
+//                        ':nme_class' => $arr->class
                     ));
                     //echo $statement->rowCount();
                 }
             }
 
-        }catch
-            (PDOException $e) {
-                echo 'Error: ' . $e->getMessage();
+        } catch
+        (PDOException $e) {
+            echo 'Error: Personagem não encontrado\n\n' . $e->getMessage();
 
-            }
+        }
 
     }
 
@@ -89,10 +90,55 @@ class ConnectionDB
 
 
         } catch (PDOException $e) {
-            echo 'Error: ' . $e->getMessage();
+            echo 'Error: Personagem não encontrado\n ' . $e->getMessage();
         }
 
 
+    }
+
+    public function className($json)
+    {
+        $className = $json->class;
+        switch ($className) {
+            case 1:
+                return "Warrior";
+
+            case 2:
+                return "Paladin";
+
+            case 3:
+                return "Hunter";
+
+            case 4:
+                return "Rogue";
+
+            case 5:
+                return "Priest";
+
+            case 6:
+                return "Death Knight";
+
+            case 7:
+                return "Shaman";
+
+            case 8:
+                return "Mage";
+
+            case 9:
+                return "Warlock";
+
+            case 10:
+                return "Monk";
+
+            case 11:
+                return "Druid";
+
+            case 12:
+                return "Demon Hunter";
+            default:
+                return "Error: Classe não identificada(classNumber<". $json->class.">)";
+
+        }
     }
 }
 
