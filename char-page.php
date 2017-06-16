@@ -9,7 +9,7 @@ if ($name != null && $server != null) {
     $charController = new CharController($name, $server);
     $json = $charController->decodeJsonNameAndServer($name, $server);
     $stats = $charController->decodeJsonStats($name, $server);
-    $raid = $charController->decodeJsonRaid($name, $server);
+    $raid = $charController->decodeJsonRaidBossName($name, $server);
 
 
 }
@@ -57,11 +57,29 @@ if (isset($json->name)) {
                 <div class="panel-heading" align="center">Informações Sobre Raid</div>
                 <div class="panel-body">
                 
-                    <div class="col-xs-2">
-                    '.$charController->decodeJsonRaidGuild($name, $server).'
+                    <div class="col-xs-4">
+                    <h3>Boss Name </h3><hr>
+                    '.$charController->decodeJsonRaidBossName($name, $server).'
                     </div>
                     <div class="col-xs-2">
+                    <h3>LFR Kills</h3><hr>
+                    '.$charController->decodeJsonRaidBossLFRKills($name, $server) .'
+                    </div>
                     
+                    
+                    <div class="col-xs-2">
+                    <h3>Normal Kills</h3><hr>
+                    '.$charController->decodeJsonRaidBossNormalKills($name, $server).'
+                    </div>
+                    
+                    <div class="col-xs-2">
+                    <h3>Heroic Kills</h3><hr>
+                    '.$charController->decodeJsonRaidBossHeroicKills($name, $server).'
+                    </div>
+                    
+                    <div class="col-xs-2">
+                    <h3>Mythic Kills</h3><hr>
+                    '.$charController->decodeJsonRaidBossMythiclKills($name, $server).'
                     </div>
                     
                 

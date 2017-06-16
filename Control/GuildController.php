@@ -6,7 +6,8 @@
  * Date: 22/05/17
  * Time: 17:34
  */
-class GuildController
-{
+class GuildController{
+
+
 
 }

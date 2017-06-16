@@ -9,13 +9,15 @@
 class Guild
 {
     private $name;
+    private $server;
     private $members;
     private $numberMembers;
 
 
-
-
-
+    function __construct($name, $server){
+        $this->name = $name;
+        $this->server = $server;
+    }
 
 
 
@@ -68,5 +70,22 @@ class Guild
     {
         $this->numberMembers = $numberMembers;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getServer()
+    {
+        return $this->server;
+    }
+
+    /**
+     * @param mixed $server
+     */
+    public function setServer($server)
+    {
+        $this->server = $server;
+    }
+
 
 }
