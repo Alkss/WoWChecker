@@ -55,30 +55,30 @@ if (isset($json->name)) {
         <div class="col-xs-9">
             <div class="panel panel-default">
                 <div class="panel-heading" align="center">Informações Sobre Raid</div>
-                <div class="panel-body">
+                <div class="panel-body" style="height: 47em; overflow: scroll">
                 
                     <div class="col-xs-4">
-                    <h3>Boss Name </h3><hr>
+                    <h4>Boss Name </h4><hr><br>
                     '.$charController->decodeJsonRaidBossName($name, $server).'
                     </div>
                     <div class="col-xs-2">
-                    <h3>LFR Kills</h3><hr>
+                    <h4>LFR Kills</h4><hr><br>
                     '.$charController->decodeJsonRaidBossLFRKills($name, $server) .'
                     </div>
                     
                     
                     <div class="col-xs-2">
-                    <h3>Normal Kills</h3><hr>
+                    <h4>Normal Kills</h4><hr><br>
                     '.$charController->decodeJsonRaidBossNormalKills($name, $server).'
                     </div>
                     
                     <div class="col-xs-2">
-                    <h3>Heroic Kills</h3><hr>
+                    <h4>Heroic Kills</h4><hr><br>
                     '.$charController->decodeJsonRaidBossHeroicKills($name, $server).'
                     </div>
                     
                     <div class="col-xs-2">
-                    <h3>Mythic Kills</h3><hr>
+                    <h4>Mythic Kills</h4><hr><br>
                     '.$charController->decodeJsonRaidBossMythiclKills($name, $server).'
                     </div>
                     

@@ -42,7 +42,7 @@ $db = new ConnectionDB();
     <!-- Box de busca pela guild -->
     <div class="col-xs-4">
         <form action="guild-page.php" style="align-self: center">
-            <h4> Buscar por Guild </h4>
+            <h4> Guild Auction </h4>
             Nome: </br><input type="text" name="name"/><br/>
             Server: </br><input type="text" name="server"/><br/>
             <input type="submit" value="Buscar">

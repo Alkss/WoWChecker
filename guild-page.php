@@ -1,10 +1,20 @@
 <?php
+
+require_once('Model/Guild.php');
+require_once('Control/GuildController.php');
+
 $name = $_GET["name"];
 $server = $_GET["server"];
-$region = $_GET["region"];
-?>
 
+if ($name != null && $server != null) {
+    $guildController = new GuildController($name, $server);
+    $json = $guildController->decodeJsonGuild($name, $server);
+    $rankings = $guildController->guildRank($name, $server);
+    $members = $guildController->findMembers($name, $server);
+}
 
+if (isset($json->name)){
+    echo '
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,12 +30,7 @@ $region = $_GET["region"];
 			<tbody>
 				<tr>
 					<td>
-						<h2><?= $name; ?></h2>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<?= $server; ?>
+						<h2>'.$name.' ('.$server.')</h2>
 					</td>
 				</tr>
 			</tbody>
@@ -35,17 +40,55 @@ $region = $_GET["region"];
 	<div class="container-fluid">
 		<div class="panel panel-default">
 			<div class="panel-heading" align="center">Informações Sobre Raid</div>
-			<div class="panel-body">Conteúdo...</div><hr>
-			<div class="panel-body">Conteúdo...</div><hr>
-			<div class="panel-body">Conteúdo...</div><hr>
-			<div class="panel-body">Conteúdo...</div><hr>
-			<div class="panel-body">Conteúdo...</div><hr>
-			<div class="panel-body">Conteúdo...</div><hr>
-			<div class="panel-body">Conteúdo...</div><hr>
-			<div class="panel-body">Conteúdo...</div><hr>
-			<div class="panel-body">Conteúdo...</div><hr>
+			<div class="col-xs-10" style="overflow: scroll; height: 45em">
+			<div class="panel-body">
+			<div class="col-xs-4">
+			<h1>World Rank:   '.$rankings->world_rank.'</h1>
+			</div>
+			<div class="col-xs-4">
+			<h1>Area Rank:   '.$rankings->area_rank.'</h1>
+			</div>
+			<div class="col-xs-4">
+			<h1>Realm Rank:   '.$rankings->realm_rank.'</h1>
+			</div>
+			
+			<h3 align="center">Composição:</h3>
+			
+			
+			<div class="col-xs-4"><h4>Tanks:</h4>
+			'.$guildController->findTANKRoles($name, $server).'
+			</div>
+			<div class="col-xs-4"><h4>Healers:</h4>
+			'.$guildController->findHEALINGRoles($name, $server).'
+			</div>
+			<div class="col-xs-4"><h4>DPS:</h4>
+			'.$guildController->findDPSRoles($name, $server).'
+			</div>
+			
+			</div>
+			</div>
+			
+			
+			<div class="col-xs-2" style="overflow: scroll; height: 45em">
+			<div class="panel-heading" align="center"><h3>Membros</h3></div>
+			<div class="panel-body">
+			'.$guildController->popMembers($members).'
+            
+			</div>
+			</div>
+			</div>
+			
+			
 		</div>
 	</div>
 </div>
 </div>
-</html>
+</html>';
+
+}
+
+else{echo "Erro 404: Guild não encontrada. Por favor verifique se todos os campos foram preenchidos corretamente.";}
+
+
+?>
+
