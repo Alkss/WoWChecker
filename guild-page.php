@@ -1,5 +1,5 @@
 <?php
-
+ini_set('display_errors', 0);
 require_once('Model/Guild.php');
 require_once('Control/GuildController.php');
 
